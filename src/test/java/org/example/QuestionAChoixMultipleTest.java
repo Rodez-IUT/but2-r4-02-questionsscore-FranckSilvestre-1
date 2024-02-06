@@ -13,6 +13,7 @@ class QuestionAChoixMultipleTest {
 
     @BeforeEach
     void setUp() {
+        // given : une instance de QuestionAChoixMultiple avec comme bonnes réponses les indices 1 et 3
         questionDeuxBonnesReponses = new QuestionAChoixMultiple(
                 "Cochez les assertions vraies.",
                 List.of(1, 3));
@@ -21,6 +22,7 @@ class QuestionAChoixMultipleTest {
     @Test
     @DisplayName("Test de la méthode getScoreForIndice pour deux choix corrects")
     void getScoreForIndiceDeuxBonnesReponses() {
+        // given : une instance de QuestionAChoixMultiple avec comme bonnes réponses les indices 1 et 3
         // when : on demande le score pour l'indice 1
         float scorePour1 = questionDeuxBonnesReponses.getScoreForIndice(1);
         // then : le score obtenu doit être 50
@@ -55,6 +57,7 @@ class QuestionAChoixMultipleTest {
     @Test
     @DisplayName("Test de la méthode getScoreForIndice pour des choix incorrects")
     void getScoreForIndiceMauvaisesReponses() {
+        // given : une instance de QuestionAChoixMultiple avec comme bonnes réponses les indices 1 et 3
         // when : on demande le score pour l'indice 2
         float scorePour2 = questionDeuxBonnesReponses.getScoreForIndice(  2);
         // then : le score obtenu doit être 0
@@ -68,6 +71,7 @@ class QuestionAChoixMultipleTest {
     @Test
     @DisplayName("Test de l'initialisation de la question")
     void testInitialisationEnonce() {
+        // given : une instance de QuestionAChoixMultiple avec comme bonnes réponses les indices 1 et 3
         // when: on demande l'énoncé de la question
         String enonce = questionDeuxBonnesReponses.getEnonce();
         // then: l'énoncé retourné est celui fourni à la construction
