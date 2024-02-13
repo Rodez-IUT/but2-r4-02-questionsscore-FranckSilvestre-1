@@ -17,6 +17,9 @@ public class QuestionAChoixMultiple implements QuestionAChoix {
      * @param indicesBonnesReponses la liste des indices formant la bonne réponse.
      */
     public QuestionAChoixMultiple(String enonce, List<Integer> indicesBonnesReponses) {
+        if (indicesBonnesReponses == null || indicesBonnesReponses.size() < 1) {
+            throw new IllegalArgumentException("Une question à choix multiple doit avoir au moins une bonne réponse");
+        }
         this.enonce = enonce;
         this.indicesBonnesReponses = indicesBonnesReponses;
     }

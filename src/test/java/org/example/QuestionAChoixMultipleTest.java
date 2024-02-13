@@ -76,7 +76,23 @@ class QuestionAChoixMultipleTest {
         String enonce = questionDeuxBonnesReponses.getEnonce();
         // then: l'énoncé retourné est celui fourni à la construction
         assertEquals("Cochez les assertions vraies.", enonce);
+    }
 
+    @Test
+    @DisplayName("Une question à choix multiple doit avoir au moins une bonne réponse")
+    void testQuestionAChoixMultipleAvecZeroBonneReponse() {
+        // given: une liste vide d'indices de bonnes réponses
+        List<Integer> indicesBonnesReponses = List.of();
+        // when: on tente de construire une question à choix multiple avec cette liste
+        // then: une exception IllegalArgumentException doit être levée
+        assertThrows(IllegalArgumentException.class,
+                () -> new QuestionAChoixMultiple("un énoncé", indicesBonnesReponses));
+        // given: un liste pointant vers null
+        List<Integer> indicesBonnesReponses2 = null;
+        // when: on tente de construire une question à choix multiple avec cette liste
+        // then: une exception IllegalArgumentException doit être levée
+        assertThrows(IllegalArgumentException.class,
+                () -> new QuestionAChoixMultiple("un énoncé", indicesBonnesReponses2));
     }
 
 }
