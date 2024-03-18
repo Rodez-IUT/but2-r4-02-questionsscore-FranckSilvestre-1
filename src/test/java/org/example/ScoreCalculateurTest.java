@@ -14,7 +14,7 @@ class ScoreCalculateurTest {
 
     @BeforeEach
     void setUp() {
-        questionAChoixMultiple = new QuestionAChoixMultiple("q1", List.of(2,3,5));
+        questionAChoixMultiple = new QuestionAChoixMultiple("q1", List.of(2,3,5), 5);
     }
 
     @Test

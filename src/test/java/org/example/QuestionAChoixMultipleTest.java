@@ -16,7 +16,8 @@ class QuestionAChoixMultipleTest {
         // given : une instance de QuestionAChoixMultiple avec comme bonnes réponses les indices 1 et 3
         questionDeuxBonnesReponses = new QuestionAChoixMultiple(
                 "Cochez les assertions vraies.",
-                List.of(1, 3));
+                List.of(1, 3),
+                5);
     }
 
     @Test
@@ -39,7 +40,8 @@ class QuestionAChoixMultipleTest {
         // given : une instance de QuestionAChoixMultiple avec comme bonnes réponses les indices 1, 2 et 3
         QuestionAChoixMultiple question = new QuestionAChoixMultiple(
                 "Cochez les assertions vraies.",
-                List.of(1, 2, 3));
+                List.of(1, 2, 3),
+                5);
         // when : on demande le score pour l'indice 1
         float scorePour1 = question.getScoreForIndice(1);
         // then : le score obtenu doit être 33.33
@@ -58,14 +60,15 @@ class QuestionAChoixMultipleTest {
     @DisplayName("Test de la méthode getScoreForIndice pour des choix incorrects")
     void getScoreForIndiceMauvaisesReponses() {
         // given : une instance de QuestionAChoixMultiple avec comme bonnes réponses les indices 1 et 3
+        // AND: 5 choix possibles
         // when : on demande le score pour l'indice 2
         float scorePour2 = questionDeuxBonnesReponses.getScoreForIndice(  2);
-        // then : le score obtenu doit être 0
-        assertEquals(0f, scorePour2, "Le score pour l'indice 2 doit être 0");
+        // then : le score obtenu doit être -100/3
+        assertEquals(-(100/3f), scorePour2, "Le score pour l'indice 2 doit être 0");
         // when : on demande le score pour l'indice 4
         float scorePour4 = questionDeuxBonnesReponses.getScoreForIndice(4);
-        // then : le score obtenu doit être 0
-        assertEquals(0f, scorePour4, "Le score pour l'indice 4 doit être 0");
+        // then : le score obtenu doit être -100/3
+        assertEquals(-(100/3f), scorePour4, "Le score pour l'indice 4 doit être 0");
     }
 
     @Test
@@ -86,13 +89,13 @@ class QuestionAChoixMultipleTest {
         // when: on tente de construire une question à choix multiple avec cette liste
         // then: une exception IllegalArgumentException doit être levée
         assertThrows(IllegalArgumentException.class,
-                () -> new QuestionAChoixMultiple("un énoncé", indicesBonnesReponses));
+                () -> new QuestionAChoixMultiple("un énoncé", indicesBonnesReponses, 4));
         // given: un liste pointant vers null
         List<Integer> indicesBonnesReponses2 = null;
         // when: on tente de construire une question à choix multiple avec cette liste
         // then: une exception IllegalArgumentException doit être levée
         assertThrows(IllegalArgumentException.class,
-                () -> new QuestionAChoixMultiple("un énoncé", indicesBonnesReponses2));
+                () -> new QuestionAChoixMultiple("un énoncé", indicesBonnesReponses2, 4));
     }
 
 }
