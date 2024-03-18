@@ -18,7 +18,7 @@ public class ScoreCalculateur {
             score += question.getScoreForIndice(indice);
         }
         if (score < 0) {
-            return score = 0;
+            score = 0;
         }
         return score;
     }
