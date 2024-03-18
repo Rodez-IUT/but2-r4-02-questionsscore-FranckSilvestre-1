@@ -61,4 +61,35 @@ class ScoreCalculateurTest {
         // then : le score obtenu doit être 100
         assertEquals(100, score, 0.01f);
     }
+
+    @Test
+    @DisplayName("Test du score pour une liste de réponses contenant toutes les réponses possibles 1,2,3,4,5")
+    void calculeScorePourToutesLesValeurs() {
+        // given : une instance de ScoreCalculateur
+        ScoreCalculateur scoreCalculateur = new ScoreCalculateur();
+        // et une liste de réponses contenant les valeurs 1, 2, 3, 4 et 5
+        List<Integer> reponses = List.of(1, 2, 3, 4, 5);
+        // et la question à choix multiple initialisée de la manière suivante :
+        // les choix 2,3 et 5 sont les bonnes réponses
+        // when : on demande le score pour cette liste de réponses
+        float score = scoreCalculateur.calculeScore(reponses, questionAChoixMultiple);
+        // then : le score obtenu doit être 100
+        assertEquals(0, score, 0.01f);
+    }
+
+    @Test
+    @DisplayName("Test du score pour une liste de réponses contenant 1,2,3")
+    void calculeScorePourToutesMixValeursCorrectesEtIncorrectes() {
+        // given : une instance de ScoreCalculateur
+        ScoreCalculateur scoreCalculateur = new ScoreCalculateur();
+        // et une liste de réponses contenant les valeurs 1, 2, 3
+        List<Integer> reponses = List.of(1, 2, 3);
+        // et la question à choix multiple initialisée de la manière suivante :
+        // les choix 2,3 et 5 sont les bonnes réponses
+        // when : on demande le score pour cette liste de réponses
+        float score = scoreCalculateur.calculeScore(reponses, questionAChoixMultiple);
+        // then : le score obtenu doit être 100
+        assertEquals(16.66, score, 0.01f);
+    }
+
 }
